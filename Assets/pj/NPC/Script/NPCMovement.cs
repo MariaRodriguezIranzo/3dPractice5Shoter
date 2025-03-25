@@ -4,20 +4,31 @@ using UnityEngine.AI;
 
 public class NPCMovement : MonoBehaviour
 {
-    public Transform target; // Objeto destino
+    public Transform target;
     private NavMeshAgent agent;
-    private Animator animator; // Cambiado a Animator
+    private Animator animator;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>(); // Usar Animator
+        animator = GetComponent<Animator>(); 
         agent.SetDestination(target.position);
     }
 
     void Update()
     {
-        float speed = agent.velocity.magnitude; // Obtener velocidad del agente
-        animator.SetFloat("Speed", speed); // Ajustar el parámetro Speed en el Animator
+
+        if (agent.remainingDistance > agent.stoppingDistance)
+        {
+            animator.SetFloat("Speed", 3f);
+            Debug.Log("Walking");
+        }
+        // Add stop animation if path is complete
+        if (agent.pathStatus == NavMeshPathStatus.PathComplete &&
+            agent.remainingDistance <= agent.stoppingDistance)
+        {
+            animator.SetFloat("Speed", 0f);
+            Debug.Log("stop");
+        }
     }
 }
