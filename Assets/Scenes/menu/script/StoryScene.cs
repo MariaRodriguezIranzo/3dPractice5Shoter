@@ -6,16 +6,6 @@ using UnityEngine.UI;
 
 public class StoryScene : MonoBehaviour
 {
-    public Button playButton;
-    public Button exitButton;
-
-    void Start()
-    {
-        // Asignar las funciones a los botones
-
-        playButton.onClick.AddListener(OnPlayButtonClick);
-        exitButton.onClick.AddListener(OnExitButtonClick);
-    }
 
     // Función para iniciar la historia (escena de historia)
     public void OnPlayButtonClick()

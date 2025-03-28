@@ -6,16 +6,6 @@ using UnityEngine.UI;
 
 public class CreditMenu : MonoBehaviour
 {
-    public Button backButton;
-    public Button exitButton;
-
-     void  Start()
-    {
-        // Asignar las funciones a los botones
-
-        backButton.onClick.AddListener(OnBackButtonClick);
-        exitButton.onClick.AddListener(OnExitButtonClick);
-    }
     // Función para ir a los créditos
     public void OnBackButtonClick()
     {

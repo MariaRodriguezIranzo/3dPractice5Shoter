@@ -1,75 +1,37 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MusicManager : MonoBehaviour
 {
-    private static MusicManager instance;
-    private AudioSource audioSource;
-    public AudioClip defaultMusic;  // Música para el menú, créditos y historia
-    public AudioClip gameMusic;    // Música para el juego
+    public static MusicManager instance; // Instancia estática para acceder desde cualquier parte
+    public AudioSource audioSource;
+    public AudioClip mainTrack; // La canción principal
+    public AudioClip gameTrack; // La canción para el modo de juego o la otra escena
 
-    void Awake()
+    private void Awake()
     {
         if (instance == null)
         {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
+            instance = this; // Asigna la instancia si no existe
+            DontDestroyOnLoad(gameObject); // Evita que el objeto sea destruido al cambiar de escena
         }
         else
         {
-            Destroy(gameObject);
-            return;
+            Destroy(gameObject); // Si ya existe, destruye el objeto duplicado
         }
+    }
 
-        // Intentar obtener el AudioSource, o crearlo si no existe
+    private void Start()
+    {
         audioSource = GetComponent<AudioSource>();
-        if (audioSource == null)
-        {
-            audioSource = gameObject.AddComponent<AudioSource>();
-        }
+        audioSource.clip = mainTrack;
+        audioSource.loop = true; // Asegúrate de que la música se repita
+        audioSource.Play();
     }
 
-
-    void Start()
+    // Método para cambiar la música a la de la escena del juego
+    public void SwitchToGameTrack()
     {
-        // Si la música está vacía, poner la música por defecto (para el menú, créditos, y historia)
-        if (audioSource.clip == null)
-        {
-            audioSource.clip = defaultMusic;
-            audioSource.Play();
-        }
-
-        // Escuchar cuando cambia la escena
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    // Detectar cuando cambia la escena
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        // Verificar la escena y reproducir la música correspondiente
-        if (scene.name == "Menu" || scene.name == "CreditsScene" || scene.name == "StoryScene")
-        {
-            // En el menú, créditos y historia, mantén la música predeterminada
-            if (audioSource.clip != defaultMusic)
-            {
-                audioSource.clip = defaultMusic;
-                audioSource.Play();
-            }
-        }
-        else if (scene.name == "GameScene")
-        {
-            // Cambiar la música cuando se entra en la escena del juego
-            if (audioSource.clip != gameMusic)
-            {
-                audioSource.clip = gameMusic;
-                audioSource.Play();
-            }
-        }
-    }
-
-    void OnDestroy()
-    {
-        // Asegurarse de dejar de escuchar eventos si el objeto es destruido
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+        audioSource.clip = gameTrack;
+        audioSource.Play();
     }
 }
