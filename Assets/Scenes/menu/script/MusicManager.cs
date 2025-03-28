@@ -10,19 +10,25 @@ public class MusicManager : MonoBehaviour
 
     void Awake()
     {
-        // Si no hay ninguna otra instancia de MusicManager, se asigna la instancia actual
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // No destruir este objeto al cargar una nueva escena
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Destroy(gameObject); // Si ya existe una instancia, destruir esta nueva
+            Destroy(gameObject);
+            return;
         }
 
+        // Intentar obtener el AudioSource, o crearlo si no existe
         audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
+
 
     void Start()
     {
