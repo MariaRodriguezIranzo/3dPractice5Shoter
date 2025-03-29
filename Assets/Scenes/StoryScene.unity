@@ -1019,6 +1019,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1488062751}
   - component: {fileID: 1488062753}
+  - component: {fileID: 1488062754}
   m_Layer: 5
   m_Name: buttons
   m_TagString: Untagged
@@ -1038,6 +1039,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1512251463}
   - {fileID: 1815956611}
   - {fileID: 1144821417}
   - {fileID: 8673333}
@@ -1056,6 +1058,102 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1488062750}
+  m_CullTransparentMesh: 1
+--- !u!114 &1488062754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488062750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2cd60e5a0d723a48a1eb5464257ed32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textDisplay: {fileID: 1815956612}
+  typingSpeed: 0.05
+  fullText: "Peter ha pasado por muchas cosas en su vida, pero nunca imagin\xF3 que
+    Lewis llegar\xEDa tan lejos.\n\nBlufire, su fiel compa\xF1ero, ha sido secuestrado.
+    Lewis y sus clones lo han llevado a una f\xE1brica abandonada, escondi\xE9ndolo
+    en alg\xFAn lugar dentro de su fortaleza llena de trampas y enemigos.\n\nEl mensaje
+    de Lewis fue claro:\n\"Si quieres recuperar a Blufire, tendr\xE1s que eliminarme
+    a m\xED\u2026 y a todos los que somos.\"\n\nPeter no tiene elecci\xF3n. Debe
+    abrirse paso entre los clones, derrotarlos a todos y llegar hasta Lewis."
+--- !u!1 &1512251462
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1512251463}
+  - component: {fileID: 1512251465}
+  - component: {fileID: 1512251464}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1512251463
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512251462}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1488062751}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.13223757, y: 0.252}
+  m_AnchorMax: {x: 0.8663945, y: 0.9518149}
+  m_AnchoredPosition: {x: 0.68652344, y: 3.6400146}
+  m_SizeDelta: {x: -10.800049, y: 6.5}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1512251464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512251462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.8862745}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1512251465
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512251462}
   m_CullTransparentMesh: 1
 --- !u!1 &1555301069
 GameObject:
@@ -1443,10 +1541,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1488062751}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.14839177, y: 0.7918762}
-  m_AnchorMax: {x: 0.87860835, y: 0.8972571}
-  m_AnchoredPosition: {x: -1, y: 0.5}
-  m_SizeDelta: {x: -3.4316406, y: -4.1300964}
+  m_AnchorMin: {x: 0.13744861, y: 0.252}
+  m_AnchorMax: {x: 0.859, y: 0.9518149}
+  m_AnchoredPosition: {x: 3.5930176, y: 3.583252}
+  m_SizeDelta: {x: 13.5683975, y: 6.7023926}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1815956612
 MonoBehaviour:
@@ -1468,17 +1566,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: historiaaaaaa
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 42df1c7856584b6b8db9a509b6b10074, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4285875440
+  m_fontColor: {r: 0.94117653, g: 0.26666668, b: 0.45882356, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1495,15 +1593,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 78.6
-  m_fontSizeBase: 77
+  m_fontSize: 47
+  m_fontSizeBase: 47
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 48.4
   m_fontSizeMax: 78.6
-  m_fontStyle: 3
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0

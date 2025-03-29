@@ -21,14 +21,14 @@ public class NPCMovement : MonoBehaviour
         if (agent.remainingDistance > agent.stoppingDistance)
         {
             animator.SetFloat("Speed", 3f);
-            Debug.Log("Walking");
+            
         }
         // Add stop animation if path is complete
         if (agent.pathStatus == NavMeshPathStatus.PathComplete &&
             agent.remainingDistance <= agent.stoppingDistance)
         {
             animator.SetFloat("Speed", 0f);
-            Debug.Log("stop");
+            
         }
     }
 }
