@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class WeaponPickup : MonoBehaviour
 {
-    public GameObject weaponPrefab; // Prefab del arma a recoger
-
+    public GameObject ak74Suelo;
     void OnTriggerEnter(Collider other)
     {
         // Verificar si el jugador ha tocado el arma
@@ -13,11 +12,11 @@ public class WeaponPickup : MonoBehaviour
 
             if (inventory != null)
             {
-                // Llamar al método para recoger el arma
-                inventory.PickupWeapon(weaponPrefab);
+                inventory.PickupWeapon();
 
-                // Destruir el objeto del arma en el suelo
-                Destroy(gameObject); // Solo destruir el objeto del suelo
+                // Ocultar el arma del suelo en lugar de destruirla
+                ak74Suelo.SetActive(false);
+
             }
         }
     }

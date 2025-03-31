@@ -2,81 +2,72 @@ using UnityEngine;
 
 public class WeaponInventory : MonoBehaviour
 {
-    public Transform weaponHolder; // Lugar donde se colocan las armas en la mano
-    public GameObject defaultWeaponPrefab;  // Prefab del arma inicial
-
-    private GameObject defaultWeapon;  // Arma inicial en la mano
-    private GameObject secondaryWeapon; // Arma recogida
-    private GameObject activeWeapon;  // Arma actualmente equipada
+    public GameObject m1911;  // Arma principal (siempre inicia activada)
+    public GameObject ak74;   // Arma secundaria (empieza desactivada)
 
     public GameObject gun1UI; // Icono del arma 1 en el inventario
     public GameObject gun2UI; // Icono del arma 2 en el inventario
 
     private bool hasSecondaryWeapon = false; // Si el jugador ha recogido un arma
-    private int currentWeaponIndex = 1; // 1 = Pistola, 2 = Arma recogida
+    private int currentWeaponIndex = 1; // 1 = M1911, 2 = AK74
 
     void Start()
     {
-        // Instanciar el arma inicial en la mano
-        defaultWeapon = Instantiate(defaultWeaponPrefab, weaponHolder);
-        SetWeaponTransform(defaultWeapon);
-        EquipWeapon(defaultWeapon); // Equipar el arma predeterminada
+        // Asegurar que el jugador empieza solo con la M1911 equipada
+        m1911.SetActive(true);
+        ak74.SetActive(false); // AK74 está oculto hasta que lo recojas
+
+        gun1UI.SetActive(true);
+        gun2UI.SetActive(false);
     }
 
     void Update()
     {
-        // Cambiar a la pistola
-        if (Input.GetKeyDown(KeyCode.Alpha1) && currentWeaponIndex != 1)
+        // Cambiar a la M1911
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            currentWeaponIndex = 1;
-            EquipWeapon(defaultWeapon);
+            EquipWeapon(1);
         }
 
-        // Cambiar al arma secundaria
-        if (Input.GetKeyDown(KeyCode.Alpha2) && hasSecondaryWeapon && currentWeaponIndex != 2)
+        // Cambiar al AK74 (solo si ya se ha recogido)
+        if (Input.GetKeyDown(KeyCode.Alpha2) && hasSecondaryWeapon)
         {
-            currentWeaponIndex = 2;
-            EquipWeapon(secondaryWeapon);
+            EquipWeapon(2);
         }
     }
 
-    // Método para equipar el arma
-    void EquipWeapon(GameObject weapon)
+    // Método para equipar armas
+    void EquipWeapon(int weaponIndex)
     {
-        if (weapon == null) return;
+        if (weaponIndex == 1) // Activar M1911
+        {
+            Debug.Log("Equipando M1911");
+            m1911.SetActive(true);
+            ak74.SetActive(false);
+            currentWeaponIndex = 1;
+        }
+        else if (weaponIndex == 2 && hasSecondaryWeapon) // Activar AK74 (solo si está recogida)
+        {
+            Debug.Log("Equipando AK74");
+            m1911.SetActive(false);
+            ak74.SetActive(true);
+            currentWeaponIndex = 2;
+        }
 
-        // Desactivar el arma anterior
-        if (activeWeapon != null) activeWeapon.SetActive(false);
-
-        // Establecer la nueva arma activa
-        activeWeapon = weapon;
-        activeWeapon.SetActive(true); // Activar el arma actual
-
-        // Actualizar el HUD del inventario
+        // Actualizar UI
         gun1UI.SetActive(currentWeaponIndex == 1);
         gun2UI.SetActive(currentWeaponIndex == 2);
     }
 
-    // Método para recoger un arma
-    public void PickupWeapon(GameObject newWeaponPrefab)
+    // Método para recoger el AK74 del suelo
+    public void PickupWeapon()
     {
         if (hasSecondaryWeapon) return; // No permitir recoger más de un arma secundaria
 
-        // Instanciar el arma recogida en la mano y mantener la referencia
-        secondaryWeapon = Instantiate(newWeaponPrefab, weaponHolder);
-        SetWeaponTransform(secondaryWeapon);
-        secondaryWeapon.SetActive(false); // Mantenerla oculta hasta que se equipe
+        hasSecondaryWeapon = true;
+        gun2UI.SetActive(true); // Mostrar icono de AK74 en el inventario
 
-        hasSecondaryWeapon = true; // Ahora el jugador tiene un arma secundaria
-        gun2UI.SetActive(true); // Mostrar el ícono de arma 2 en el inventario
-
-        Debug.Log("Arma recogida: " + newWeaponPrefab.name);
-    }
-
-    // Ajustar la posición y rotación del arma
-    private void SetWeaponTransform(GameObject weapon)
-    {
-        weapon.transform.localPosition = new Vector3(0.0235f, 0.1705f, 0.0141f);
-        weapon.transform.localRotation = Quaternion.Euler(180f, -90f, -280f);
+        // Asegurar que el AK74 está desactivado hasta que lo equipe
+        ak74.SetActive(false);
     }
 }

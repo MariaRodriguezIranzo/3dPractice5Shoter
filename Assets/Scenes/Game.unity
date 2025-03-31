@@ -1377,7 +1377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8afcda0fbabed4d8c6963c8222b6cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponPrefab: {fileID: 389583075}
+  ak74Suelo: {fileID: 389583075}
 --- !u!65 &389583080
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2154,6 +2154,73 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880395542}
   m_CullTransparentMesh: 1
+--- !u!1001 &889719874
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 726740633}
+    m_Modifications:
+    - target: {fileID: 100000, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
+      propertyPath: m_Name
+      value: AK74
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.057
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.134
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.028
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.4998041
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.49136335
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.4156631
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.57963973
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 103.333984
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -138.06601
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -407.827
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1940928085}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1940928084}
+  m_SourcePrefab: {fileID: 100100000, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
 --- !u!1 &925392146
 GameObject:
   m_ObjectHideFlags: 0
@@ -2242,7 +2309,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
       propertyPath: m_Name
-      value: AK74
+      value: AK74Suelo
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3073,14 +3140,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 13a8b141f0c4ff8438f7622457bb91f4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3469,10 +3536,16 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5312874648500993016, guid: eeea0fe7d3009cc47888b76055f4ce87, type: 3}
       insertIndex: 0
       addedObject: {fileID: 68587369}
+    - targetCorrespondingSourceObject: {fileID: 5312874648500993016, guid: eeea0fe7d3009cc47888b76055f4ce87, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 1940928083}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3936155261873162600, guid: eeea0fe7d3009cc47888b76055f4ce87, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1629998251}
+    - targetCorrespondingSourceObject: {fileID: 3936155261873162600, guid: eeea0fe7d3009cc47888b76055f4ce87, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1629998252}
   m_SourcePrefab: {fileID: 100100000, guid: eeea0fe7d3009cc47888b76055f4ce87, type: 3}
 --- !u!4 &1629998244 stripped
 Transform:
@@ -3491,10 +3564,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66805ff69824c2c44918d8995d06d674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponHolder: {fileID: 726740633}
-  defaultWeaponPrefab: {fileID: 202786928}
+  m1911: {fileID: 202786928}
+  ak74: {fileID: 1940928082}
   gun1UI: {fileID: 1465300278}
   gun2UI: {fileID: 1659142106}
+--- !u!114 &1629998252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 951513689}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 680076bc86553c54884b3e66df3cfcac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 0}
+  firePoint: {fileID: 0}
+  fireRate: 0.2
+  maxAmmo: 10
 --- !u!1 &1659142106
 GameObject:
   m_ObjectHideFlags: 0
@@ -3545,14 +3634,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: a284afe3ecd34784cb3c1e859d511ef5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4110,6 +4199,50 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 806870458}
   m_SourcePrefab: {fileID: 100100000, guid: c76cbbaa4dcf73241ad69b2a8731d53f, type: 3}
+--- !u!1 &1940928082 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
+  m_PrefabInstance: {fileID: 889719874}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1940928083 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
+  m_PrefabInstance: {fileID: 889719874}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1940928084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940928082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8afcda0fbabed4d8c6963c8222b6cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ak74Suelo: {fileID: 389583075}
+--- !u!65 &1940928085
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940928082}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.033782385, y: 0.16676848, z: 0.7707256}
+  m_Center: {x: -0.0017576693, y: -0.036212504, z: -0.06259711}
 --- !u!1 &1975747708
 GameObject:
   m_ObjectHideFlags: 0
