@@ -1,88 +1,98 @@
-using UnityEngine;
 using System.Collections;
-using TMPro; // Asegúrate de importar el espacio de nombres para TextMesh Pro
+using UnityEngine;
+using TMPro;
 
 public class WeaponShooting : MonoBehaviour
 {
-    public GameObject bulletPrefab; // Prefab de la bala
-    public Transform firePoint;     // Punto desde donde disparan las balas
-    public float bulletSpeed = 20f; // Velocidad de la bala
-    public int maxAmmo = 10;       // Máxima munición
-    private int currentAmmo;       // Munición actual
-
-    public float reloadTime = 2f;  // Tiempo de recarga (en segundos)
-    private bool isReloading = false; // Para comprobar si está recargando
-
-    // Usamos TextMeshProUGUI en lugar de UI.Text
-    public TextMeshProUGUI normalText; // El texto normal que se actualizará
+    public GameObject bulletPrefab;
+    public Transform firePoint;
+    public float bulletSpeed = 20f;
+    public int maxAmmo = 10;
+    private int currentAmmo;
+    public float reloadTime = 12f;
+    private bool isReloading = false;
+    public TextMeshProUGUI normalText;
+    public AudioSource audioSource;
+    public AudioClip shootSound;
+    public AudioClip reloadSound;
 
     void Start()
     {
-        currentAmmo = maxAmmo; // Inicializa la munición
-        UpdateNormalText(); // Actualizar texto al inicio
+        currentAmmo = maxAmmo;
+        UpdateAmmoText();
     }
 
     void Update()
     {
-        // Si presionas el botón de disparo y tienes munición
+        // Verifica si el jugador hace clic para disparar
         if (Input.GetButtonDown("Fire1") && currentAmmo > 0 && !isReloading)
         {
-            Shoot(); // Disparar
+            Shoot();
         }
 
-        // Si presionas la tecla "R", recargar
+        // Verifica si el jugador presiona "R" para recargar
         if (Input.GetKeyDown(KeyCode.R) && !isReloading && currentAmmo < maxAmmo)
         {
-            StartCoroutine(Reload()); // Iniciar la corrutina de recarga
+            StartCoroutine(Reload());
         }
 
-        // Actualizar texto normal en pantalla
-        UpdateNormalText();
+        // Actualiza el texto de la munición
+        UpdateAmmoText();
     }
 
     void Shoot()
     {
-        currentAmmo--; // Reducir munición
-        Debug.Log("Disparo!");
+        // Disminuye la munición y realiza el disparo
+        currentAmmo--;
 
-        // Crear la bala
+        // Reproduce el sonido de disparo si está configurado
+        if (audioSource && shootSound)
+        {
+            audioSource.PlayOneShot(shootSound);
+        }
+
+        // Instancia la bala y le asigna velocidad
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-
-        // Asegúrate de que la bala tenga un Rigidbody
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            // Disparar hacia adelante, usando firePoint.forward (dirección en la que está mirando el arma)
-            rb.velocity = firePoint.forward * bulletSpeed; // Aplicar velocidad hacia adelante
-        }
-        else
-        {
-            Debug.LogError("La bala no tiene un Rigidbody adjunto!");
+            rb.velocity = firePoint.up * bulletSpeed;
         }
     }
 
-    // Método de recarga con un temporizador
     private IEnumerator Reload()
     {
-        isReloading = true; // Marca que estamos recargando
-        Debug.Log("Recargando...");
+        // Inicia la recarga
+        isReloading = true;
 
-        // Espera durante el tiempo de recarga
+        // Reproduce el sonido de recarga si está configurado y lo reproduce en bucle
+        if (audioSource && reloadSound)
+        {
+            audioSource.clip = reloadSound;      // Asignamos el sonido de recarga
+            audioSource.loop = true;             // Activamos el loop
+            audioSource.Play();                  // Reproducimos el sonido
+        }
+
+        // Espera el tiempo de recarga
         yield return new WaitForSeconds(reloadTime);
 
-        // Restablece la munición
-        currentAmmo = maxAmmo;
-        Debug.Log("Recargado!");
+        // Detiene el sonido de recarga una vez terminado
+        if (audioSource)
+        {
+            audioSource.loop = false;            // Desactivamos el loop
+            audioSource.Stop();                  // Detenemos el sonido
+        }
 
-        isReloading = false; // Marca que ya no estamos recargando
+        // Restaura la munición y termina la recarga
+        currentAmmo = maxAmmo;
+        isReloading = false;
     }
 
-    // Actualizar texto normal (puedes cambiar este texto para mostrar lo que quieras)
-    private void UpdateNormalText()
+    private void UpdateAmmoText()
     {
+        // Actualiza el texto que muestra la munición actual
         if (normalText != null)
         {
-            // Mostrar la munición en el texto, o cualquier otro mensaje que quieras
             normalText.text = currentAmmo + "/" + maxAmmo;
         }
     }

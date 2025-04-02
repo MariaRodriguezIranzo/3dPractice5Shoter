@@ -207,7 +207,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 514927714}
         m_TargetAssemblyTypeName: StoryScene, Assembly-CSharp
-        m_MethodName: OnPlayButtonClick
+        m_MethodName: OnBackButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1074,10 +1074,10 @@ MonoBehaviour:
   textDisplay: {fileID: 1815956612}
   typingSpeed: 0.05
   fullText: "Peter ha pasado por muchas cosas en su vida, pero nunca imagin\xF3 que
-    Lewis llegar\xEDa tan lejos.\n\nBlufire, su fiel compa\xF1ero, ha sido secuestrado.
+    Lewis llegar\xEDa tan lejos.\n\nBluefire, su fiel compa\xF1ero, ha sido secuestrado.
     Lewis y sus clones lo han llevado a una f\xE1brica abandonada, escondi\xE9ndolo
     en alg\xFAn lugar dentro de su fortaleza llena de trampas y enemigos.\n\nEl mensaje
-    de Lewis fue claro:\n\"Si quieres recuperar a Blufire, tendr\xE1s que eliminarme
+    de Lewis fue claro:\n\"Si quieres recuperar a Bluefire, tendr\xE1s que eliminarme
     a m\xED\u2026 y a todos los que somos.\"\n\nPeter no tiene elecci\xF3n. Debe
     abrirse paso entre los clones, derrotarlos a todos y llegar hasta Lewis."
 --- !u!1 &1512251462

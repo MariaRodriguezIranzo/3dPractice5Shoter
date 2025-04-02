@@ -14,6 +14,12 @@ public class StoryScene : MonoBehaviour
         SceneManager.LoadScene("Game");
     }
 
+    public void OnBackButtonClick()
+    {
+        // Cambiar a la escena de créditos
+        SceneManager.LoadScene("menu");
+    }
+
     // Función para salir del juego
     public void OnExitButtonClick()
     {
