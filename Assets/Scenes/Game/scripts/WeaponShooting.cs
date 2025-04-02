@@ -9,7 +9,7 @@ public class WeaponShooting : MonoBehaviour
     public float bulletSpeed = 20f;
     public int maxAmmo = 10;
     private int currentAmmo;
-    public float reloadTime = 12f;
+    public float reloadTime = 14; 
     private bool isReloading = false;
     public TextMeshProUGUI normalText;
     public AudioSource audioSource;
@@ -24,34 +24,28 @@ public class WeaponShooting : MonoBehaviour
 
     void Update()
     {
-        // Verifica si el jugador hace clic para disparar
         if (Input.GetButtonDown("Fire1") && currentAmmo > 0 && !isReloading)
         {
             Shoot();
         }
 
-        // Verifica si el jugador presiona "R" para recargar
         if (Input.GetKeyDown(KeyCode.R) && !isReloading && currentAmmo < maxAmmo)
         {
             StartCoroutine(Reload());
         }
 
-        // Actualiza el texto de la munición
         UpdateAmmoText();
     }
 
     void Shoot()
     {
-        // Disminuye la munición y realiza el disparo
         currentAmmo--;
 
-        // Reproduce el sonido de disparo si está configurado
         if (audioSource && shootSound)
         {
             audioSource.PlayOneShot(shootSound);
         }
 
-        // Instancia la bala y le asigna velocidad
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         if (rb != null)
@@ -62,26 +56,18 @@ public class WeaponShooting : MonoBehaviour
 
     private IEnumerator Reload()
     {
-        // Inicia la recarga
         isReloading = true;
 
-        // Reproduce el sonido de recarga si está configurado y lo reproduce en bucle
+        // Reproducimos el sonido de recarga una sola vez
         if (audioSource && reloadSound)
         {
-            audioSource.clip = reloadSound;      // Asignamos el sonido de recarga
-            audioSource.loop = true;             // Activamos el loop
-            audioSource.Play();                  // Reproducimos el sonido
+            audioSource.loop = false; // Asegurar que no está en loop
+            audioSource.PlayOneShot(reloadSound);
+            reloadTime = reloadSound.length;
         }
 
-        // Espera el tiempo de recarga
+        // Esperamos el tiempo de recarga
         yield return new WaitForSeconds(reloadTime);
-
-        // Detiene el sonido de recarga una vez terminado
-        if (audioSource)
-        {
-            audioSource.loop = false;            // Desactivamos el loop
-            audioSource.Stop();                  // Detenemos el sonido
-        }
 
         // Restaura la munición y termina la recarga
         currentAmmo = maxAmmo;
@@ -90,7 +76,6 @@ public class WeaponShooting : MonoBehaviour
 
     private void UpdateAmmoText()
     {
-        // Actualiza el texto que muestra la munición actual
         if (normalText != null)
         {
             normalText.text = currentAmmo + "/" + maxAmmo;
