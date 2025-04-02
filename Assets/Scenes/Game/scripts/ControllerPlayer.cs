@@ -61,7 +61,13 @@ public class ControllerPlayer : MonoBehaviour
 
         StartCoroutine(PlayDeathAnimation());
     }
-
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("NPC"))
+        {
+            //StartCoroutine(RecibirDaño());
+        }
+    }
     private IEnumerator PlayDeathAnimation()
     {
         if (animator != null)
