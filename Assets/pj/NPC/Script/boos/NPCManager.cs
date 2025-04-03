@@ -42,7 +42,7 @@ public class NPCManager : MonoBehaviour
         GameObject[] npcEnemies = GameObject.FindGameObjectsWithTag("NPC");
         bool allDefeated = npcEnemies.Length == 0;
 
-        //Debug.Log("NPCs restantes: " + npcEnemies.Length);
+        Debug.Log("NPCs restantes: " + npcEnemies.Length);
         return allDefeated;
     }
 
