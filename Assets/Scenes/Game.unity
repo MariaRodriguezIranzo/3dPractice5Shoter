@@ -4868,12 +4868,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1366967055}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.017, y: -0.027, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: 0.0090194605, y: 0.7070493, z: 0.7070493, w: -0.009019459}
+  m_LocalPosition: {x: 66.74, y: -9.66, z: 26.14}
+  m_LocalScale: {x: 2.9999998, y: 2.9999998, z: 2.9999998}
+  m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 2000097860}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1366967057
 BoxCollider:
@@ -5055,7 +5055,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1443797898
 Transform:
   m_ObjectHideFlags: 0
@@ -5123,7 +5123,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1458592017
 Transform:
   m_ObjectHideFlags: 0
@@ -6873,7 +6873,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bluefireDog: {fileID: 2000097859}
-  winArea: {fileID: 1366967056}
   winSceneName: WIN
 --- !u!1001 &2000097858
 PrefabInstance:
@@ -6933,10 +6932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 3439195246249450996, guid: 7bb2a380f58abc941923c439bac8e8a7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1366967056}
+    m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2662095180355159886, guid: 7bb2a380f58abc941923c439bac8e8a7, type: 3}
       insertIndex: -1
@@ -6947,13 +6943,8 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2662095180355159886, guid: 7bb2a380f58abc941923c439bac8e8a7, type: 3}
   m_PrefabInstance: {fileID: 2000097858}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &2000097860 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3439195246249450996, guid: 7bb2a380f58abc941923c439bac8e8a7, type: 3}
-  m_PrefabInstance: {fileID: 2000097858}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &2000097861
-BoxCollider:
+--- !u!135 &2000097861
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -6967,12 +6958,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.24516678
+  m_Center: {x: 1.6446126e-10, y: -0.094435915, z: 0.16039824}
 --- !u!1 &2028911659
 GameObject:
   m_ObjectHideFlags: 0
@@ -7274,4 +7265,5 @@ SceneRoots:
   - {fileID: 940163439}
   - {fileID: 973005558}
   - {fileID: 858992723}
+  - {fileID: 1366967056}
   - {fileID: 2000097858}

@@ -1,21 +1,17 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement; // Necesario para cambiar de escena
 using System.Collections; // Necesario para corutinas
 
 public class NPCManager : MonoBehaviour
 {
     public GameObject bluefireDog;  // El perro con el tag Bluefire
-    public Transform winArea;       // Zona donde el jugador debe llegar
-    public string winSceneName = "WinScene"; // Nombre de la escena de victoria
-
-    private bool allEnemiesDefeated = false;
-    private bool playerInWinArea = false;
+    public string winSceneName = "WIN"; // Nombre de la escena de victoria
 
     void Start()
     {
         if (bluefireDog != null)
         {
-            bluefireDog.SetActive(false);
+            bluefireDog.SetActive(false); // Desactivamos el perro al inicio
             Debug.Log("Perro Bluefire desactivado al inicio.");
         }
         else
@@ -26,58 +22,31 @@ public class NPCManager : MonoBehaviour
 
     void Update()
     {
-        if (!allEnemiesDefeated)
-        {
-            allEnemiesDefeated = CheckEnemiesDefeated();
-        }
-
-        if (allEnemiesDefeated && playerInWinArea)
-        {
-            StartCoroutine(ShowDogAndLoadWinScene());
-        }
-    }
-
-    bool CheckEnemiesDefeated()
-    {
+        // Comprobar si todos los NPC están derrotados
         GameObject[] npcEnemies = GameObject.FindGameObjectsWithTag("NPC");
-        bool allDefeated = npcEnemies.Length == 0;
+        bool allEnemiesDefeated = npcEnemies.Length == 0;
 
-        Debug.Log("NPCs restantes: " + npcEnemies.Length);
-        return allDefeated;
+        if (allEnemiesDefeated)
+        {
+            // Si todos los enemigos están derrotados y el perro aún no está activo, activarlo
+            if (bluefireDog != null && !bluefireDog.activeSelf)
+            {
+                bluefireDog.SetActive(true);
+                Debug.Log("El perro Bluefire ha aparecido.");
+
+                // Llamamos a la corutina para esperar 30 segundos y cargar la escena de victoria
+                StartCoroutine(ShowDogAndLoadWinScene());
+            }
+        }
     }
 
     IEnumerator ShowDogAndLoadWinScene()
     {
-        if (bluefireDog != null && !bluefireDog.activeSelf)
-        {
-            bluefireDog.SetActive(true);
-            Debug.Log("El perro Bluefire ha aparecido.");
-            yield return new WaitForSeconds(2f);
-        }
-        else
-        {
-            Debug.LogError("El perro Bluefire no se activó correctamente.");
-        }
+        // Esperar 30 segundos mientras el perro está visible
+        yield return new WaitForSeconds(30f);
 
+        // Cargar la escena de victoria
         Debug.Log("Cargando la escena de victoria...");
-        SceneManager.LoadScene(winSceneName);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInWinArea = true;
-            Debug.Log("Jugador ha llegado al área de victoria.");
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInWinArea = false;
-            Debug.Log("Jugador ha salido del área de victoria.");
-        }
+        SceneManager.LoadScene(winSceneName); // Carga la escena de victoria
     }
 }
