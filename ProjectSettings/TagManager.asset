@@ -7,6 +7,9 @@ TagManager:
   - ItemDrop
   - CinemachineTarget
   - NPC
+  - Heal
+  - Bluefire
+  - boos
   layers:
   - Default
   - TransparentFX

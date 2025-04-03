@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class ControllerPlayer : MonoBehaviour
 {
-    public int maxHealth = 5;
-    private int currentHealth;
-    public Image[] hearts;
+    public int health = 5;
+    
+    public GameObject[] hearts;
     private Animator animator;
     public AudioClip damageSound;  // Sonido de daño
     public AudioClip deathSound;   // Sonido de muerte
@@ -15,38 +15,10 @@ public class ControllerPlayer : MonoBehaviour
 
     void Start()
     {
-        currentHealth = maxHealth;
+       
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>(); // Obtén el componente AudioSource
-        UpdateHealthUI();
-    }
 
-    public void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        UpdateHealthUI();
-
-        Debug.Log($"Player recibió daño. Vida restante: {currentHealth}");
-
-        // Reproduce sonido de daño
-        if (audioSource != null && damageSound != null)
-        {
-            audioSource.PlayOneShot(damageSound);  // Reproduce el sonido de daño
-        }
-
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-    }
-
-    private void UpdateHealthUI()
-    {
-        for (int i = 0; i < hearts.Length; i++)
-        {
-            hearts[i].enabled = i < currentHealth;
-        }
     }
 
     private void Die()
@@ -65,16 +37,63 @@ public class ControllerPlayer : MonoBehaviour
     {
         if (other.gameObject.CompareTag("NPC"))
         {
-            //StartCoroutine(RecibirDaño());
+            StartCoroutine(RecibirDaño());
         }
     }
     private IEnumerator PlayDeathAnimation()
     {
         if (animator != null)
         {
-            animator.SetTrigger("Die");
+            animator.SetBool("Die", true);
             yield return new WaitForSeconds(1.5f);
         }
-        SceneManager.LoadScene("GameOver");
+
+    }
+
+    public IEnumerator RecibirDaño()
+    {
+        if (health > 1)
+        {
+            health -= 1;
+            Debug.Log($"Player recibió daño. Vida restante: {health}");
+        }
+        else
+        {
+            health -= 1;
+            for (int i = 5; i >= 0; i--)
+            {
+                hearts[i].SetActive(i == health);
+            }
+            animator.SetBool("Die", true);
+            yield return new WaitForSeconds(2);
+            SceneManager.LoadScene("GameOver");
+        }
+
+        // Actualizar HUD
+        for (int i = 5; i >= 0; i--)
+        {
+            hearts[i].SetActive(i == health);
+        }
+
+        yield return null; // Sin esperar, para permitir que el jugador reciba daño inmediatamente.
+    }
+
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Heal"))
+        {
+            if (health < 5)
+            {
+                health += 1;
+                for (int i = 0; i < 6; i++)
+                {
+
+                    hearts[i].SetActive(i == health);
+                } 
+                Destroy(other.gameObject);
+            }
+           
+        }
     }
 }

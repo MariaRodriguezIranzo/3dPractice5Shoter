@@ -38,7 +38,7 @@ public class Bullet : MonoBehaviour
         ControllerPlayer player = other.GetComponent<ControllerPlayer>();
         if (player != null)
         {
-            player.TakeDamage(damage);
+           
             Destroy(gameObject); // Destruye la bala al impactar con el jugador
             return;
         }
