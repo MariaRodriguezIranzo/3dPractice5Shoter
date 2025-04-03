@@ -240,7 +240,7 @@ MonoBehaviour:
   meleeAttackRange: 2
   rangedAttackRange: 10
   detectionRange: 20
-  projectilePrefab: {fileID: 5919220286410709334, guid: 4af55725874c3ab4680e71190aec474c, type: 3}
+  projectilePrefab: {fileID: 5642858144603959214, guid: e4fdc43cc7c39fb48960032a89602f32, type: 3}
   firePoint: {fileID: 552614714}
   projectileSpeed: 15
   attackCooldown: 1.5
@@ -5051,7 +5051,7 @@ GameObject:
   - component: {fileID: 1443797898}
   m_Layer: 0
   m_Name: NPC2
-  m_TagString: NPC
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5119,7 +5119,7 @@ GameObject:
   - component: {fileID: 1458592017}
   m_Layer: 0
   m_Name: NPC Estados
-  m_TagString: NPC
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5900,7 +5900,7 @@ GameObject:
   - component: {fileID: 1690009157}
   m_Layer: 0
   m_Name: NPC
-  m_TagString: NPC
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6872,10 +6872,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f195c4cade14649bcf1d98334d4cea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcEnemies:
-  - {fileID: 283772844}
-  - {fileID: 840550179}
-  - {fileID: 21777727}
   bluefireDog: {fileID: 2000097859}
   winArea: {fileID: 1366967056}
   winSceneName: WIN
